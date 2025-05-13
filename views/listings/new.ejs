@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">List Your Property on WonderLust</h2>
+
+    <form method="post" action="/listings" novalidate class="p-4 bg-white shadow rounded needs-validation">
+        
+        <div class="mb-3">
+            <label for="title" class="form-label">Property Title</label>
+            <input name="listing[title]" id="title" class="form-control" type="text" placeholder="Enter your property name" required>
+            <div class="invalid-feedback">
+                Please enter your valid property name
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" id="description" class="form-control" placeholder="About your property" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Please enter a short description
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input name="listing[location]" id="location" class="form-control" type="text" placeholder="City or Area" required>
+            <div class="invalid-feedback">
+                Location is required
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" id="country" class="form-control" type="text" placeholder="Country" required>
+            <div class="invalid-feedback">
+                Country is required
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input name="listing[image][url]" id="imageUrl" class="form-control" type="text" placeholder="Link/URL for property picture">
+        </div>
+
+        <div class="mb-3">
+            <label for="imageFilename" class="form-label">Image Filename</label>
+            <input name="listing[image][filename]" id="imageFilename" class="form-control" type="text" placeholder="Image filename (optional)">
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price per Night (INR)</label>
+            <input name="listing[price]" id="price" class="form-control" type="number" placeholder="e.g., 999" required>
+            <div class="invalid-feedback">
+                Please enter a valid price tag
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4 add-btn">Add Listing</button>
+        </div>
+    </form><br><br>
+</div>

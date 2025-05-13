@@ -1,0 +1,165 @@
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vv;
+}
+
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-location-arrow{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+.foot-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.foot-links a:hover{
+    text-decoration: underline;
+}
+
+.foot-info{
+    background-color: #ebebeb;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.foot-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.foot-links, .foot-socials, .foot-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.add-btn, .update-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Rating Stars - Left to Right */
+.rating {
+    display: flex;
+    justify-content: left;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.rating input:checked ~ label {
+    color: #f39c12;
+}
+
+/* Centering Review Cards */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.card .card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-text {
+    word-wrap: break-word;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Review Section */
+.row.g-4 {
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-body p {
+    margin-bottom: 10px;
+}
+
+/* Ensure text stays inside the borders */
+.card-body {
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
