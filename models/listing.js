@@ -31,7 +31,13 @@ let listingSchema = new Schema({
     ]
 });
 
-listingSchema.post("findOneAndDelete", async (Listing) => {
+// listingSchema.post("findOneAndDelete", async (Listing) => {
+//     if(listing){
+//         await Review.deleteMany({_id: {$in: listing.reviews}});
+//     }
+// })
+
+listingSchema.post("findOneAndDelete", async (listing) => {
     if(listing){
         await Review.deleteMany({_id: {$in: listing.reviews}});
     }
