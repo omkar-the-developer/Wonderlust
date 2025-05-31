@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center">List Your Property on WonderLust</h2>
 
-    <form method="post" action="/listings" novalidate class="p-4 bg-white shadow rounded needs-validation">
+    <form method="post" action="/listings" novalidate class="p-4 bg-white shadow rounded needs-validation" enctype="multipart/form-data">
         
         <div class="mb-3">
             <label for="title" class="form-label">Property Title</label>
@@ -38,14 +38,14 @@
         </div>
 
         <div class="mb-3">
-            <label for="imageUrl" class="form-label">Image URL</label>
-            <input name="listing[image][url]" id="imageUrl" class="form-control" type="text" placeholder="Link/URL for property picture">
+            <label for="image" class="form-label">Upload Listing Image</label>
+            <input name="listing[image]" id="image" class="form-control" type="file">
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="imageFilename" class="form-label">Image Filename</label>
             <input name="listing[image][filename]" id="imageFilename" class="form-control" type="text" placeholder="Image filename (optional)">
-        </div>
+        </div> -->
 
         <div class="mb-3">
             <label for="price" class="form-label">Price per Night (INR)</label>
