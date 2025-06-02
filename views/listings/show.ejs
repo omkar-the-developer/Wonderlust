@@ -79,6 +79,7 @@
 
 
     <!-- All Reviews Section -->
+     <% if (listing.reviews.length >0) { %>
     <div class="container mt-4">
         <hr>
         <h4 class="text-center mb-4">All Reviews:</h4><br>
@@ -99,5 +100,25 @@
             <% } %>
         </div>
     </div>
-
+     <% } else { %>
+        <h4 class="text-center mb-4"><i>(No reviews availabe for this Property)</i></h4><br>
+        <% } %>
+     
+    <!-- Map -->
+        <div class="container mt-5 mb-4">
+            <h4 class="mb-3">📍 Where you'll be</h4>
+            <div id="map" class="w-100 rounded shadow" style="height: 400px;"></div>
+        </div>
+    </div>
 </div>
+
+<script>
+    let mapToken = "<%= process.env.MAP_TOKEN %>";
+    mapboxgl.accessToken = mapToken;
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [85.8246, 20.2960],
+        zoom: 9
+    });
+</script>

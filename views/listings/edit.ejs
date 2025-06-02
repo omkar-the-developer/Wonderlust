@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center">Edit Your Property Details</h2>
 
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="p-4 bg-white shadow rounded needs-validation" novalidate>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="p-4 bg-white shadow rounded needs-validation" novalidate enctype="multipart/form-data">
         
         <div class="mb-3">
             <label for="title" class="form-label">Name</label>
@@ -37,18 +37,26 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="imageUrl" class="form-label">Image URL</label>
-            <input name="listing[image][url]" id="imageUrl" class="form-control" type="text" value="<%= listing.image.url %>" required>
-            <div class="invalid-feedback">
-                Please enter a valid image URL.
-            </div>
+        <div class="mb-4">
+    <label class="form-label fw-semibold">Previous Listing Image</label>
+    <div class="border rounded p-3 d-flex align-items-center shadow-sm" style="background-color: #f8f9fa;">
+        <img src="<%= originalImageUrl %>" alt="Previous image" class="img-thumbnail me-3" style="max-height: 150px;">
+        <div>
+            <p class="mb-1 text-muted small"><i>This is the current image associated with your listing. You may upload a new image below to replace it.</i></p>
         </div>
+    </div>
+</div>
+
 
         <div class="mb-3">
+            <label for="imageUrl" class="form-label">Upload new image</label>
+            <input name="listing[image]" id="imageUrl" class="form-control" type="file">
+        </div>
+
+        <!-- <div class="mb-3">
             <label for="imageFilename" class="form-label">Image Filename</label>
             <input name="listing[image][filename]" id="imageFilename" class="form-control" type="text" value="<%= listing.image.filename %>">
-        </div>
+        </div> -->
 
         <div class="mb-3">
             <label for="price" class="form-label">Price (per night)</label>

@@ -10,12 +10,28 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createListing = async (req, res) => {
-    const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;
-    await newListing.save();
-    req.flash("success", "New listing added successfully");
-    res.redirect("/listings");
+    try {
+        if (!req.file) {
+            req.flash("error", "Image file is mandatory. Try again with your property image");
+            return res.redirect("/listings/new");
+        }
+
+        const url = req.file.path;
+        const filename = req.file.filename;
+        const newListing = new Listing(req.body.listing);
+        newListing.owner = req.user._id;
+        newListing.image = { url, filename };
+        
+        await newListing.save();
+        req.flash("success", "New listing added successfully");
+        res.redirect("/listings");
+    } catch (err) {
+        console.error(err);
+        req.flash("error", "Something went wrong while creating the listing.");
+        res.redirect("/listings");
+    }
 };
+
 
 module.exports.editForm = async (req, res, next) => {
     const { id } = req.params;
@@ -24,19 +40,27 @@ module.exports.editForm = async (req, res, next) => {
         req.flash("error", "Listing not found");
         return res.redirect("/listings");
     }
-    res.render("listings/edit.ejs", { listing });
+
+    let originalImageUrl = listing.image.url;
+    originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_300,h_200,c_fill");
+    res.render("listings/edit.ejs", { listing, originalImageUrl });
 };
 
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
     const updatedListing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-    if (!updatedListing) {
-        req.flash("error", "Listing not found");
-        return res.redirect("/listings");
+
+    if (req.file) {
+        const url = req.file.path;
+        const filename = req.file.filename;
+        updatedListing.image = { url, filename };
+        await updatedListing.save();
     }
+
     req.flash("success", "Listing updated successfully");
-    res.redirect("/listings");
+    res.redirect(`/listings/${id}`);
 };
+
 
 module.exports.showListing = async (req, res) => {
     const { id } = req.params;
