@@ -1,19 +1,3 @@
-// mapboxgl.accessToken = mapToken;
-
-// const map = new mapboxgl.Map({
-//     container: 'map',
-//     // style: 'mapbox://styles/mapbox/streets-v11',
-//       style: "mapbox://style/mapbox/streets-v12", //shows styles
-//     center: coordinates, // [lng, lat]
-//     zoom: 9
-// });
-
-// new mapboxgl.Marker( {color: "red" })
-//     .setLngLat(coordinates)
-//     .addTo(map);
-
-
-
 // ⛔ Block Mapbox telemetry POST requests silently
 const originalFetch = window.fetch;
 window.fetch = function (...args) {
