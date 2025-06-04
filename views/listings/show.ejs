@@ -1,4 +1,8 @@
 <% layout("/layouts/boilerplate") %>
+<script>
+    const mapToken = "<%= process.env.mapToken %>";
+    const listing = <%- JSON.stringify(listing) %>;
+</script>
 
 <div class="container mt-5">
 
@@ -112,13 +116,4 @@
     </div>
 </div>
 
-<script>
-    let mapToken = "<%= process.env.MAP_TOKEN %>";
-    mapboxgl.accessToken = mapToken;
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [85.8246, 20.2960],
-        zoom: 9
-    });
-</script>
+<script src="/js/map.js"></script>

@@ -1,24 +1,59 @@
-<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/"><i class="fa-sharp fa-solid fa-location-arrow"></i> <b>WonderLust</b></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-md bg-white border-bottom shadow-sm sticky-top py-2">
+  <div class="container-fluid px-4">
+    <!-- Left: Brand and Explore -->
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand fw-bold fs-5 text-danger" href="/listings">
+        <i class="fa-sharp fa-solid fa-location-arrow me-2"></i>WonderLust</a>
+
+      <!-- Explore Link -->
+      <a class="nav-link px-3 text-dark fw-medium d-flex align-items-center hover-effect fs-6" href="/listings">
+        <i class="fa-solid fa-compass me-2 text-danger"></i> Explore
+      </a>
+    </div>
+
+    <!-- Center: Search Panel -->
+    <div class="d-none d-md-flex mx-auto rounded-pill shadow-sm border px-3 py-2 align-items-center gap-3"
+      style="background-color: #f7f7f7; max-width: 600px;">
+      <input type="text" class="form-control border-0 rounded-pill" placeholder="Where to?" style="max-width: 150px;">
+      <div class="vr"></div>
+      <input type="text" class="form-control border-0 rounded-pill" placeholder="Any week" style="max-width: 150px;">
+      <div class="vr"></div>
+      <input type="text" class="form-control border-0 rounded-pill" placeholder="Add guests" style="max-width: 150px;">
+      <button class="btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center"
+        style="width: 30px; height: 30px;">
+        <i class="fa-solid fa-magnifying-glass text-white"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/listings">All listings</a>
-          <a class="nav-link" href="/listings/new">Add your property</a>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <% if(!currUser) { %>
-          <a class="nav-link" href="/signup">Sign Up</a>
-          <a class="nav-link" href="/login">Log In</a>
-          <% } %>
-          <% if(currUser) { %>
-          <a class="nav-link" href="/logout">Log Out</a>
-          <% } %>
-        </div>
+    </div>
+
+    <!-- Right: Links (Sign Up, Log In, Log Out) -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav align-items-center gap-3">
+        <!-- Host Your Property -->
+        <a class="nav-link px-3 text-dark fw-medium d-flex align-items-center hover-effect fs-6" href="/listings/new">
+          <i class="fa-solid fa-home me-2 text-success"></i> Host Your Property
+        </a>
+
+        <!-- Only show Sign Up and Log In if not logged in -->
+        <% if (!currUser) { %>
+          <a class="nav-link btn btn-outline-dark px-3 py-1 rounded-pill fw-semibold text-dark fs-6" href="/signup">
+            <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+          </a>
+
+          <!-- Log In -->
+          <a class="nav-link btn btn-primary text-white px-3 py-1 rounded-pill fw-semibold fs-6" href="/login">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Log In
+          </a>
+        <% } %>
+
+        <!-- Log Out (Only show if logged in) -->
+        <% if (currUser) { %>
+          <a class="nav-link btn btn-outline-danger px-3 py-1 rounded-pill fw-semibold fs-6" href="/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Log Out
+          </a>
+        <% } %>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!-- Custom Hover Effect (For better visuals) -->

@@ -1,25 +1,128 @@
 <% layout("layouts/boilerplate") %>
 <body>
-    <h3 class="text-center my-4">All Listings</h3>
 
-    <div class="container">
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-3">
-            <% for(let listing of allListings) { %>
-                <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="<%= listing.image.url %>" class="card-img-top" alt="property pics" style="height: 20rem; object-fit: cover;">
-                        <div class="card-img-overlay"></div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <b><%= listing.title %></b><br>
-                                &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                </a>
-            <% } %>
+
+
+<div class="filters-wrapper">
+  <button class="scroll-button scroll-left" onclick="manualScroll(-200)">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div id="filttters">
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-house-fire"></i></div><p>Trending</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-water-ladder"></i></div><p>Amazing Pools</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-crown"></i></div><p>Luxury</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-people-roof"></i></div><p>Family</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-warehouse"></i></div><p>Cabins</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-tent"></i></div><p>Tents</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-cow"></i></div><p>Farm House</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-umbrella-beach"></i></div><p>Beach</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-place-of-worship"></i></div><p>Castles</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-mountain-city"></i></div><p>Iconic Cities</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-tree"></i></div><p>Forest</p></div>
+    <div class="filter"><div class="filter-icon"><i class="fa-solid fa-snowflake"></i></div><p>Winter</p></div>
+  </div>
+
+  <button class="scroll-button scroll-right" onclick="manualScroll(200)">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <div class="toggle-container">
+    <span class="toggle-label">Display total with taxes</span>
+    <label class="switch">
+      <input type="checkbox" id="tax-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-3">
+    <% for(let listing of allListings) { %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="col">
+          <div class="card h-100">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="property pics" style="height: 20rem; object-fit: cover;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= listing.title %></b><br>
+                <span class="price-display" data-base="<%= listing.price %>">
+                  ₹ <%= listing.price.toLocaleString("en-IN") %>/night
+                </span>
+                <span class="price-original text-muted fst-italic" style="display: none;">
+                  (₹ <%= listing.price.toLocaleString("en-IN") %> + 18% GST)
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
-    </div>
+      </a>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  const filters = document.getElementById('filttters');
+  let autoScrollActive = true;
+  let pauseTimeout;
+
+  function autoScrollLoop() {
+    if (!autoScrollActive) return;
+    if (filters.scrollLeft + filters.offsetWidth >= filters.scrollWidth - 2) {
+      autoScrollActive = false;
+      filters.style.scrollBehavior = 'auto';
+      filters.scrollLeft = 0;
+      setTimeout(() => {
+        filters.style.scrollBehavior = 'smooth';
+        autoScrollActive = true;
+        autoScrollLoop();
+      }, 1000);
+    } else {
+      filters.scrollLeft += 1;
+      requestAnimationFrame(autoScrollLoop);
+    }
+  }
+
+  function pauseAutoScroll() {
+    autoScrollActive = false;
+    clearTimeout(pauseTimeout);
+    pauseTimeout = setTimeout(() => {
+      autoScrollActive = true;
+      autoScrollLoop();
+    }, 5000);
+  }
+
+  function manualScroll(amount) {
+    filters.scrollBy({ left: amount, behavior: 'smooth' });
+    pauseAutoScroll();
+  }
+
+  autoScrollLoop();
+
+  // GST Toggle Logic
+  const taxToggle = document.getElementById("tax-toggle");
+
+  taxToggle.addEventListener("change", function () {
+    const isTaxOn = this.checked;
+    const cards = document.querySelectorAll(".card-text");
+
+    cards.forEach(card => {
+      const priceDisplay = card.querySelector(".price-display");
+      const priceOriginal = card.querySelector(".price-original");
+      const basePrice = parseFloat(priceDisplay.getAttribute("data-base"));
+
+      if (isTaxOn) {
+        const taxedPrice = Math.round(basePrice * 1.18).toLocaleString("en-IN");
+        priceDisplay.innerHTML = `₹ ${taxedPrice}/night`;
+        priceOriginal.innerHTML = `(₹ ${basePrice.toLocaleString("en-IN")} + 18% GST)`;
+        priceOriginal.style.display = "block";
+      } else {
+        priceDisplay.innerHTML = `₹ ${basePrice.toLocaleString("en-IN")}/night`;
+        priceOriginal.style.display = "none";
+      }
+    });
+  });
+</script>
+
 </body>

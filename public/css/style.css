@@ -168,3 +168,215 @@ body{
     height: 400px;
     width: 80vh;
 }
+
+.nav-link:hover, .btn:hover {
+/* background-color: #f8f9fa; */
+border-radius: 8px;
+transition: background-color 0.2s ease-in-out;
+}
+
+.nav-link.btn-outline-dark:hover {
+background-color: #e0e0e0;
+}
+
+.nav-link.btn-dark:hover {
+background-color: #333;
+}
+
+.nav-link.btn-outline-danger:hover {
+background-color: #f8d7da;
+}
+
+.hover-effect:hover {
+background-color: #f8f9fa;
+border-radius: 8px;
+transition: background-color 0.2s ease-in-out;
+}
+
+/* Additional tweaks for Search Bar */
+.navbar-toggler-icon {
+color: #ff5a5f;
+}
+
+/* Ensuring a more compact navbar with smaller text */
+.navbar-nav .nav-link, .navbar-nav .btn {
+font-size: 0.875rem; /* Slightly smaller font size */
+padding: 6px 12px; /* Reduced padding to fit in one line */
+}
+
+.navbar-brand {
+font-size: 1.125rem; /* Slightly smaller brand name */
+}
+
+.navbar-nav {
+white-space: nowrap; /* Ensure text stays in one line */
+}
+
+/* Style for Log In button */
+.nav-link.btn-primary {
+background-color: #007bff; /* Blue background for visibility */
+border: 1px solid #007bff;
+}
+
+.nav-link.btn-primary:hover {
+background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Center Search Bar */
+.navbar-nav .collapse {
+flex-grow: 0;
+}
+
+.d-none.d-md-flex {
+flex-grow: 1;
+justify-content: center;
+}
+
+
+* {
+box-sizing: border-box;
+}
+
+.filters-wrapper {
+display: flex;
+align-items: center;
+background: #fff;
+border-bottom: 1px solid #eee;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+padding: 12px 16px;
+position: relative;
+overflow: hidden;
+}
+
+.scroll-button {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+z-index: 2;
+background: transparent;
+border: none;
+font-size: 20px;
+color: #333;
+cursor: pointer;
+padding: 6px 10px;
+}
+
+.scroll-left {
+left: 15px;
+}
+
+.scroll-right {
+right: 260px;
+}
+
+#filttters {
+display: flex;
+gap: 20px;
+overflow-x: auto;
+white-space: nowrap;
+scroll-behavior: smooth;
+flex: 1;
+margin: 0 40px;
+}
+
+#filttters::-webkit-scrollbar {
+display: none;
+}
+
+.filter {
+flex: 0 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: #f7f7f7;
+border-radius: 24px;
+padding: 10px 14px;
+cursor: pointer;
+opacity: 0.7;
+transition: all 0.3s ease;
+}
+
+.filter:hover {
+opacity: 1;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-icon {
+font-size: 20px;
+margin-bottom: 6px;
+color: #FF5A5F;
+}
+
+.filter p {
+font-size: 14px;
+color: #333;
+margin: 0;
+text-align: center;
+}
+
+.toggle-container {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-left: 20px;
+padding: 8px 12px;
+border-left: 1px solid #ddd;
+border: 1px solid #ccc;
+border-radius: 12px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+background-color: #fff;
+flex-shrink: 0;
+}
+
+.toggle-label {
+font-size: 14px;
+color: #333;
+}
+
+.switch {
+position: relative;
+display: inline-block;
+width: 46px;
+height: 24px;
+}
+
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0; left: 0; right: 0; bottom: 0;
+background-color: #ccc;
+transition: 0.3s;
+border-radius: 24px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: 0.3s;
+border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+background-color: #FF5A5F;
+}
+
+.switch input:checked + .slider:before {
+transform: translateX(22px);
+}
+
+.price-original {
+font-size: 13px;
+color: #777;
+}
