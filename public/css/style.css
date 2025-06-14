@@ -380,3 +380,18 @@ transform: translateX(22px);
 font-size: 13px;
 color: #777;
 }
+
+/* footer */
+.wl-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ensures full height */
+}
+
+.wl-content {
+    flex: 1;
+}
+
+.wl-footer {
+    border-top: 1px solid #444; /* subtle top border */
+}

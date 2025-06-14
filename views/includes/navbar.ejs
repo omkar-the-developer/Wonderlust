@@ -34,7 +34,7 @@
         </a>
 
         <!-- Only show Sign Up and Log In if not logged in -->
-        <% if (!currUser) { %>
+          <% if (typeof currUser === 'undefined' || !currUser) { %>
           <a class="nav-link btn btn-outline-dark px-3 py-1 rounded-pill fw-semibold text-dark fs-6" href="/signup">
             <i class="fa-solid fa-user-plus me-1"></i> Sign Up
           </a>
@@ -55,5 +55,3 @@
     </div>
   </div>
 </nav>
-
-<!-- Custom Hover Effect (For better visuals) -->

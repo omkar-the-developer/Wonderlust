@@ -18,7 +18,9 @@
             <h3 class="card-title fw-bold mb-3"><%= listing.title %></h3>
             <i>(Owned By: <%= listing.owner.username %>)</i>
             <hr>
-            <p class="card-text text-muted mb-4 fs-5"><%= listing.description %></p>
+            <p class="card-text text-muted mb-4 fs-5" style="max-height: 110px; overflow: auto;">
+                <%= listing.description %>
+            </p>
 
             <!-- Listing Details -->
             <ul class="list-group list-group-flush mb-4">
