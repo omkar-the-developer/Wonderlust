@@ -40,6 +40,19 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 app.engine("ejs", ejsMate);
+
+// Fix for Render 404 issue on refresh or direct nested route access
+app.use((req, res, next) => {
+  if (
+    req.method === "GET" &&
+    req.accepts("html") &&
+    !req.path.startsWith("/api") &&
+    !req.path.includes(".")
+  ) {
+    return next(); // Allow dynamic routes like /listings/:id to be handled by Express
+  }
+  next();
+});
 app.use(express.static(path.join(__dirname, "/public")));
 
 const store = MongoStore.create({
