@@ -25,15 +25,19 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const dbUrl = process.env.ATLASDB_URL;
 
-main()
-.then(() => {
-    console.log("connected to db")
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: true  // safe for development
 })
-.catch(err => console.log(err));
+.then(() => {
+    console.log("✅ Connected to MongoDB Atlas");
+})
+.catch(err => {
+    console.error("❌ MongoDB connection error:", err);
+});
 
-async function main() {
-  await mongoose.connect(dbUrl);
-}
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
