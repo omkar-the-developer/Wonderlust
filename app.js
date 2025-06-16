@@ -26,17 +26,10 @@ const User = require("./models/user.js");
 const dbUrl = process.env.ATLASDB_URL;
 
 mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    ssl: true,
-    tlsAllowInvalidCertificates: true  // safe for development
+    ssl: true
 })
-.then(() => {
-    console.log("✅ Connected to MongoDB Atlas");
-})
-.catch(err => {
-    console.error("❌ MongoDB connection error:", err);
-});
+.then(() => console.log("✅ Connected to MongoDB Atlas"))
+.catch(err => console.error("❌ MongoDB connection error:", err));
 
 
 app.set("view engine", "ejs");
